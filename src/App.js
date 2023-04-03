@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import {useEffect, useState} from "react";
+import DBTable from "./Table";
+import "./App.css"
+import Header from "./Header";
+
+const gifLink = "https://cdn.dribbble.com/users/1299339/screenshots/11116681/media/79bf1ac602445860e4a44bcd4bf80704.gif"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [abonents, setAbonents] = useState(null)
+    const [colNames, setColNames] = useState(null)
+
+    useEffect(() => {
+        // fetch data
+        fetch('http://localhost:3009/get_abonents')
+            .then((response) => response.json())
+            .then(
+                (data) => data[0]
+            ).then((data) => {
+            // console.log(data)
+            setAbonents(data)
+            setColNames(Object.keys(data[0]))
+        })
+            .catch((error) => console.log(error))
+    }, [])
+
+    return (
+        <div>
+            <Header/>
+
+            {abonents === null ?
+                <div className="text-center">
+                    <img src={gifLink} alt="gif" class="center"/>
+                </div>
+                : <DBTable title="My table" columns={colNames} rows={abonents}/>
+            }
+        </div>
+    )
 }
 
 export default App;
