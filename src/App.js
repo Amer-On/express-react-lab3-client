@@ -25,7 +25,7 @@ function App() {
 
     return (
         <div>
-            <Header/>
+            <Header next={[["/append", "Append database"], ["/append_device", "Append devices"]]}/>
 
             {abonents === null ?
                 <div className="text-center">
@@ -36,5 +36,9 @@ function App() {
         </div>
     )
 }
+
+
+
+
 
 export default App;

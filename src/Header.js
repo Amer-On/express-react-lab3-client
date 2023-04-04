@@ -6,8 +6,9 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import {Link} from "react-router-dom";
 
-function Header() {
+function Header(props) {
     return (
         <AppBar className="header-navigation" position="static">
             <Toolbar>
@@ -26,7 +27,14 @@ function Header() {
                             component="div" sx={{flexGrow: 1}}>
                     Amer On Database Lab 3
                 </Typography>
-                <Button color="inherit">Login</Button>
+                {
+                    props.next.map((next) => (
+                            <Link className="transition" to={next[0]}>
+                                <Button color="inherit">{next[1]}</Button>
+                            </Link>
+                        )
+                    )
+                }
             </Toolbar>
         </AppBar>
     );

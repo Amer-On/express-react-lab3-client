@@ -1,5 +1,3 @@
-// import Table from 'react-bootstrap/Table'
-
 function DBTable(props) {
     return (
         <section className="table">
@@ -10,9 +8,9 @@ function DBTable(props) {
                             <div className="col-12">
                                 <div className="card shadow-2-strong">
                                     <div className="card-body p-0">
-                                        <div className="table-responsive table-scroll wrapper" data-mdb-perfect-scrollbar="true">
+                                        <div className="table-responsive table-scroll wrapper"
+                                             data-mdb-perfect-scrollbar="true">
                                             <table className="table table-dark mb-0">
-                                                {/*<caption>{props.title}</caption>*/}
                                                 <thead className="tableHead">
                                                 <tr className="text-uppercase header">
                                                     {props.columns.map(column => (
